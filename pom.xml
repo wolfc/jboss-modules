@@ -25,7 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.modules</groupId>
     <artifactId>jboss-modules</artifactId>
-    <version>1.0.0.Beta17-3-g0f66336</version>
+    <version>1.0.0.Beta18-SNAPSHOT</version>
     <name>JBoss Modules</name>
 
     <parent>
