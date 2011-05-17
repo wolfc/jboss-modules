@@ -410,10 +410,10 @@ public class ModuleClassLoader extends ConcurrentClassLoader {
                 throw e;
             }
         } catch (Error e) {
-            log.classDefineFailed(e, name, module);
+            log.classDefineFailed(name, module);
             throw e;
         } catch (RuntimeException e) {
-            log.classDefineFailed(e, name, module);
+            log.classDefineFailed(name, module);
             throw e;
         }
         final AssertionSetting setting = classSpec.getAssertionSetting();

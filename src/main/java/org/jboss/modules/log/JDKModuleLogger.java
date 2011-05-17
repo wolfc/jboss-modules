@@ -22,13 +22,13 @@
 
 package org.jboss.modules.log;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.jboss.modules.Main;
 import org.jboss.modules.Module;
 import org.jboss.modules.ModuleIdentifier;
 import org.jboss.modules.ModuleLoader;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A {@link ModuleLogger} which logs to a JDK logging category.
@@ -189,9 +189,9 @@ public final class JDKModuleLogger implements ModuleLogger {
         }
     }
 
-    public void classDefineFailed(final Throwable throwable, final String className, final Module module) {
+    public void classDefineFailed(final String className, final Module module) {
         if (defineLogger.isLoggable(WARN)) {
-            doLog(WARN, String.format("Failed to define class %s in %s", className, module), throwable);
+            doLog(WARN, String.format("Failed to define class %s in %s", className, module));
         }
     }
 

@@ -89,7 +89,7 @@ public final class NoopModuleLogger implements ModuleLogger {
     }
 
     @Override
-    public void classDefineFailed(final Throwable throwable, final String className, final Module module) {
+    public void classDefineFailed(final String className, final Module module) {
     }
 
     @Override
