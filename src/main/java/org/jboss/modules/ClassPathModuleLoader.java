@@ -33,10 +33,10 @@ import java.util.jar.JarFile;
  *
  * @author <a href="mailto:jperkins@redhat.com">James R. Perkins</a>
  */
-final class ClassPathModuleLoader extends ModuleLoader {
+public final class ClassPathModuleLoader extends ModuleLoader {
 
     private static final String[] NO_STRINGS = new String[0];
-    protected static final ModuleIdentifier IDENTIFIER = ModuleIdentifier.fromString("classpath");
+    public static final ModuleIdentifier IDENTIFIER = ModuleIdentifier.fromString("classpath");
     private final ModuleLoader delegateLoader;
     private final String classPath;
     private final String dependencies;
