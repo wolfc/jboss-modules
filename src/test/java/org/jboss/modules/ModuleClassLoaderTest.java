@@ -419,4 +419,21 @@ public class ModuleClassLoaderTest extends AbstractModuleTestCase {
         final InputStream in = classLoader.getResourceAsStream("system/system-resource.txt");
         assertNotNull(in);
     }
+
+    @Test
+    public void testOtherSystemResource() throws Exception {
+        assertTrue(System.getProperty("jboss.modules.system.pkgs").contains("system"));
+        assertNotNull(ClassLoader.getSystemResource("othersystem/other-system-resource.txt"));
+        final Module testModule = moduleLoader.loadModule(MODULE_WITH_CONTENT_ID);
+        final ModuleClassLoader classLoader = testModule.getClassLoader();
+
+        final URL resourceURL = classLoader.getResource("othersystem/other-system-resource.txt");
+        assertNull("Should not be able to find system resource othersystem/other-system-resource.txt.", resourceURL);
+
+        final Enumeration<URL> resourceURLs = classLoader.getResources("othersystem/other-system-resource.txt");
+        assertFalse(resourceURLs.hasMoreElements());
+
+        final InputStream in = classLoader.getResourceAsStream("othersystem/other-system-resource.txt");
+        assertNull(in);
+    }
 }
