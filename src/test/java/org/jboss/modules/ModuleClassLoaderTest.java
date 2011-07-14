@@ -32,6 +32,7 @@ import org.jboss.modules.util.TestResourceLoader;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.List;
@@ -401,5 +402,21 @@ public class ModuleClassLoaderTest extends AbstractModuleTestCase {
         System.out.println(testClass.getClassLoader());
         final Package pkg = testClass.getPackage();
         assertEquals("JBoss Modules Test Classes", pkg.getSpecificationTitle());
+    }
+
+    @Test
+    public void testSystemResource() throws Exception {
+        assertTrue(System.getProperty("jboss.modules.system.pkgs").contains("system"));
+        final Module testModule = moduleLoader.loadModule(MODULE_WITH_CONTENT_ID);
+        final ModuleClassLoader classLoader = testModule.getClassLoader();
+
+        final URL resourceURL = classLoader.getResource("system/system-resource.txt");
+        assertNotNull("Unable to find system resource system/system-resource.txt.", resourceURL);
+
+        final Enumeration<URL> resourceURLs = classLoader.getResources("system/system-resource.txt");
+        assertTrue(resourceURLs.hasMoreElements());
+
+        final InputStream in = classLoader.getResourceAsStream("system/system-resource.txt");
+        assertNotNull(in);
     }
 }

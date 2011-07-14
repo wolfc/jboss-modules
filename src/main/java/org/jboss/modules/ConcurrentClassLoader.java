@@ -22,6 +22,8 @@
 
 package org.jboss.modules;
 
+import sun.misc.Unsafe;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -36,7 +38,6 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentMap;
-import sun.misc.Unsafe;
 
 /**
  * A classloader which can delegate to multiple other classloaders without risk of deadlock.  A concurrent class loader
@@ -172,7 +173,7 @@ public abstract class ConcurrentClassLoader extends SecureClassLoader {
     public final URL getResource(final String name) {
         for (String s : Module.systemPaths) {
             if (name.startsWith(s)) {
-                return super.getResource(name);
+                return getSystemResource(name);
             }
         }
         return findResource(name, false);
@@ -190,7 +191,7 @@ public abstract class ConcurrentClassLoader extends SecureClassLoader {
     public final Enumeration<URL> getResources(final String name) throws IOException {
         for (String s : Module.systemPaths) {
             if (name.startsWith(s)) {
-                return super.getResources(name);
+                return getSystemResources(name);
             }
         }
         return findResources(name, false);
@@ -273,7 +274,7 @@ public abstract class ConcurrentClassLoader extends SecureClassLoader {
     public final InputStream getResourceAsStream(final String name) {
         for (String s : Module.systemPaths) {
             if (name.startsWith(s)) {
-                return super.getResourceAsStream(name);
+                return getSystemResourceAsStream(name);
             }
         }
         return findResourceAsStream(name, false);

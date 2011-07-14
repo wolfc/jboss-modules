@@ -60,6 +60,9 @@
                         <include>**/*Test.java</include>
                     </includes>
                     <forkMode>always</forkMode>
+                    <systemPropertyVariables>
+                        <jboss.modules.system.pkgs>system</jboss.modules.system.pkgs>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 

@@ -1,0 +1,1 @@
+This file should be findable in an isolate module with jboss.modules.system.pkgs set to "system".
